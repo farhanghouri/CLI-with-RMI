@@ -8,7 +8,7 @@ public class DeleteQueryCommand implements Command{
     }
 
 	@Override
-	public void execute(String query) {
-		qr.deleteQuery(query);
+	public Bean execute(String query) {
+		return qr.deleteQuery(query);
 	}
 }

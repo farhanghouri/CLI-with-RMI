@@ -8,7 +8,7 @@ public class InsertQueryCommand implements Command{
 	    }
 
 		@Override
-		public void execute(String query) {
-			qr.insertQuery(query);
+		public Bean execute(String query) {
+			return qr.insertQuery(query);
 		}
 	}

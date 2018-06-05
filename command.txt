@@ -1,3 +1,3 @@
-javac m/myMain.java
+javac m/Server.java
 rmiregistry
-java -cp ".:./lib/mysql-connector-java-bin.jar" m/myMain
+java -cp ".:./lib/mysql-connector-java-bin.jar" m/Server

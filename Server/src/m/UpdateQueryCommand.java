@@ -8,7 +8,7 @@ public class UpdateQueryCommand implements Command{
 	    }
 
 		@Override
-		public void execute(String query) {
-			qr.updateQuery(query);
+		public Bean execute(String query) {
+			return qr.updateQuery(query);
 		}
 	}

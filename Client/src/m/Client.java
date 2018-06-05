@@ -16,10 +16,11 @@ public class Client {
          // Calling the remote method using the obtained object 
          Bean bean = stub.execute("select * from employee");
          
-
- 		for(Map.Entry m:bean.tuples.get(0).entrySet()){  
- 			   System.out.println(m.getKey()+" "+m.getValue());  
- 			  } 
+         if(bean != null)
+         for(int i=0; i<bean.tuples.size(); i++)
+	 		for(Map.Entry<String,String> m:bean.tuples.get(i).entrySet()){  
+	 			   System.out.println(m.getKey()+" "+m.getValue());  
+	 	    } 
  		
           System.out.println("Remote method invoked: "); 
       } catch (Exception e) {

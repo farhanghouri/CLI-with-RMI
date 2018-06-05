@@ -24,7 +24,7 @@ public class MySQLQueryReceiver implements QueryReceiver{
 			for  (int i = 1; i<= rs.getMetaData().getColumnCount(); i++){ 
                 System.out.print(rs.getString(i)+"\t");
                 tuple.put(rs.getMetaData().getColumnName(i), rs.getString(i));
-            }
+            }System.out.println();
 			bean.tuples.add(tuple);
 		} 
 		
@@ -67,8 +67,8 @@ public class MySQLQueryReceiver implements QueryReceiver{
 			        
 			 
 			System.out.println("printing");
+			con.close(); 
 	        return storeResultSet(rs);
-			//con.close(); 
 			
         }catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
@@ -78,7 +78,7 @@ public class MySQLQueryReceiver implements QueryReceiver{
 	}
 
 	@Override
-	public void insertQuery(String query) {
+	public Bean insertQuery(String query) {
 		System.out.println("insert query execute");
 		try {
 			Connection con = getConnectionFromPool();
@@ -91,15 +91,17 @@ public class MySQLQueryReceiver implements QueryReceiver{
 	        stmt.execute(query);
 
 			con.close();
+			
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+        return null;
 		
 	}
 
 	@Override
-	public void updateQuery(String query) {
+	public Bean updateQuery(String query) {
 		System.out.println("update query execute");
 		try {
 			Connection con = getConnectionFromPool();
@@ -116,11 +118,12 @@ public class MySQLQueryReceiver implements QueryReceiver{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+        return null;
 		
 	}
 
 	@Override
-	public void deleteQuery(String query) {
+	public Bean deleteQuery(String query) {
 		System.out.println("delete query execute");
 		try {
 			Connection con = getConnectionFromPool();
@@ -137,6 +140,7 @@ public class MySQLQueryReceiver implements QueryReceiver{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+        return null;
 		
 	}
 
