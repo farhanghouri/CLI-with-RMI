@@ -15,8 +15,7 @@ public class MySQLQueryReceiver implements QueryReceiver{
 		try{
 			 	
 	    bean = new Bean();
-		bean.table_name = rs.getMetaData().getTableName(1);
-		bean.tuples = new ArrayList<Map<String,String>>();
+		bean.table_name = rs.getMetaData().getTableName(1); 
 		System.out.println(bean.table_name);
 		
 		while(rs.next()){ 
@@ -42,8 +41,8 @@ public class MySQLQueryReceiver implements QueryReceiver{
 	@Override
 	public Bean selectQuery(String query) {
 		System.out.println("select query execute");
-        try{ 
-	        Connection con = getConnectionFromPool();
+        try(Connection con = getConnectionFromPool()){ 
+	        
 	        System.out.println("Sucess");
 	        Statement stmt = null;  // statement/query execute
 	        ResultSet rs = null;    // output show
@@ -66,22 +65,21 @@ public class MySQLQueryReceiver implements QueryReceiver{
 			        }*/
 			        
 			 
-			System.out.println("printing");
-			con.close(); 
+			System.out.println("----printing----"); 
 	        return storeResultSet(rs);
 			
         }catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        return null;
+        return new Bean();
 	}
 
 	@Override
 	public Bean insertQuery(String query) {
 		System.out.println("insert query execute");
-		try {
-			Connection con = getConnectionFromPool();
+		try(Connection con = getConnectionFromPool()){
+			
 	        System.out.println("Sucess");
 	        Statement stmt = null;  // statement/query execute 
 	         
@@ -90,21 +88,21 @@ public class MySQLQueryReceiver implements QueryReceiver{
 	        stmt =  con.createStatement();
 	        stmt.execute(query);
 
-			con.close();
+			 
 			
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        return null;
+        return new Bean();
 		
 	}
 
 	@Override
 	public Bean updateQuery(String query) {
 		System.out.println("update query execute");
-		try {
-			Connection con = getConnectionFromPool();
+		try(Connection con = getConnectionFromPool()) {
+			
 	        System.out.println("Success");
 	        Statement stmt = null;  // statement/query execute 
 	         
@@ -113,20 +111,20 @@ public class MySQLQueryReceiver implements QueryReceiver{
 	        stmt =  con.createStatement();
 	        stmt.execute(query);
 
-			con.close();
+			 
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        return null;
+        return new Bean();
 		
 	}
 
 	@Override
 	public Bean deleteQuery(String query) {
 		System.out.println("delete query execute");
-		try {
-			Connection con = getConnectionFromPool();
+		try(Connection con = getConnectionFromPool();){
+			
 	        System.out.println("Success");
 	        Statement stmt = null;  // statement/query execute 
 	         
@@ -135,12 +133,12 @@ public class MySQLQueryReceiver implements QueryReceiver{
 	        stmt =  con.createStatement();
 	        stmt.execute(query);
 
-			con.close();
+			 
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        return null;
+        return new Bean();
 		
 	}
 

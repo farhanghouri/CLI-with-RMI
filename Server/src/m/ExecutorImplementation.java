@@ -44,7 +44,7 @@ public class ExecutorImplementation implements Executor {
 		        QueryInvoker queryInvoker = new QueryInvoker(command);
 		        return queryInvoker.execute(query);
 	        }
-	        return null;
+	        return new Bean();
 	        
 		     
 		
